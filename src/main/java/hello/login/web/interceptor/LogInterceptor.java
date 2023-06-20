@@ -12,6 +12,7 @@ import java.util.UUID;
 @Slf4j
 public class LogInterceptor implements HandlerInterceptor {
 
+                            /* ctrl + alt + C : 상수로 빼기 */
     public static final String LOG_ID = "logId";
 
     @Override
@@ -22,7 +23,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
         request.setAttribute(LOG_ID, uuid);
 
-        // @RequestMapping : HandlerMethod
+        // @RequestMapping : HandlerMethod   >> @RequsetMapping()을 사용하면 어떤 핸들러가 사용되나? >> HandlerMethod가 사용
         // 정적 리소스: ResourceHttpRequestHandler
         if (handler instanceof HandlerMethod) {
             HandlerMethod hm = (HandlerMethod) handler; // 호출할 컨트롤러 메서드의 모든 정보가 포함되어 있다.
@@ -35,7 +36,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        log.info("postHandle [{}]", modelAndView);
+        log.info("postHandle -> modelAndView  : [{}]", modelAndView);
     }
 
     @Override
